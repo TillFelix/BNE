@@ -1,0 +1,560 @@
+/* ===== Design-System: BNE Leben an Land – Modern & lebendig ===== */
+:root {
+  --gruen-dunkel: #1a5c1a;
+  --gruen-mittel: #2e7d32;
+  --gruen-hell: #81c784;
+  --gruen-sehr-hell: #f1f8f1;
+  --text: #1a1a1a;
+  --text-hell: #555;
+  --text-mittel: #333;
+  --weiss: #ffffff;
+  --schatten-klein: 0 2px 8px rgba(0,0,0,0.10);
+  --schatten: 0 4px 16px rgba(0,0,0,0.13);
+  --schatten-gross: 0 8px 32px rgba(0,0,0,0.18);
+  --radius: 16px;
+  --radius-klein: 8px;
+  --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Rote Liste – kräftige Farben */
+  --vorwarnliste:        #f5c400;
+  --vorwarnliste-bg:     #fffbe6;
+  --vorwarnliste-text:   #5a4400;
+  --gefaehrdet:          #e65100;
+  --gefaehrdet-bg:       #fff3e0;
+  --gefaehrdet-text:     #fff;
+  --stark-gefaehrdet:    #bf360c;
+  --stark-gefaehrdet-bg: #fbe9e7;
+  --stark-gefaehrdet-text: #fff;
+  --aussterben:          #7f0000;
+  --aussterben-bg:       #ffebee;
+  --aussterben-text:     #fff;
+  --ausgestorben:        #424242;
+  --ausgestorben-bg:     #f5f5f5;
+  --ausgestorben-text:   #fff;
+}
+
+/* ===== Reset & Basis ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  background: #f4f7f4;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--gruen-dunkel); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ===== Site Header ===== */
+.site-header {
+  background: var(--gruen-dunkel);
+  color: var(--weiss);
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.site-header a {
+  color: var(--weiss);
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.95;
+  transition: var(--transition);
+}
+.site-header a:hover { opacity: 1; text-decoration: none; letter-spacing: 0.01em; }
+
+/* ===== Hero (Hauptseite) ===== */
+.hero {
+  background: linear-gradient(150deg, #1a5c1a 0%, #2e7d32 50%, #388e3c 100%);
+  color: var(--weiss);
+  text-align: center;
+  padding: 3.5rem 1.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero .sdg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.18);
+  border: 2px solid rgba(255,255,255,0.45);
+  border-radius: 30px;
+  padding: 0.35rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+.hero h1 {
+  font-size: clamp(1.7rem, 5vw, 2.8rem);
+  font-weight: 900;
+  margin-bottom: 0.85rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.hero p {
+  font-size: 1.1rem;
+  max-width: 580px;
+  margin: 0 auto;
+  opacity: 0.93;
+  line-height: 1.6;
+}
+
+/* ===== Sektionen ===== */
+.section {
+  padding: 2.5rem 1.25rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--gruen-dunkel);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* ===== SDG Info Box ===== */
+.sdg-info {
+  background: var(--weiss);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--schatten-klein);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.sdg-info .zitat {
+  background: var(--gruen-sehr-hell);
+  border-left: 4px solid var(--gruen-mittel);
+  padding: 1.1rem 1.3rem;
+  border-radius: 0 var(--radius-klein) var(--radius-klein) 0;
+  font-style: italic;
+  color: var(--gruen-dunkel);
+  margin-top: 1.1rem;
+  font-size: 0.97rem;
+  line-height: 1.7;
+}
+
+/* ===== Rote Liste Karten ===== */
+.rote-liste-grid { display: grid; gap: 0.85rem; }
+.rl-karte {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius);
+  border-left: 6px solid;
+  background: var(--weiss);
+  box-shadow: var(--schatten-klein);
+  transition: var(--transition);
+}
+.rl-karte:hover { transform: translateX(3px); box-shadow: var(--schatten); }
+.rl-karte.vorwarnliste   { border-color: var(--vorwarnliste); }
+.rl-karte.gefaehrdet     { border-color: var(--gefaehrdet); }
+.rl-karte.stark-gefaehrdet { border-color: var(--stark-gefaehrdet); }
+.rl-karte.aussterben     { border-color: var(--aussterben); }
+.rl-karte.ausgestorben   { border-color: var(--ausgestorben); }
+
+.rl-badge {
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+.vorwarnliste   .rl-badge { background: var(--vorwarnliste);  color: var(--vorwarnliste-text); }
+.gefaehrdet     .rl-badge { background: var(--gefaehrdet);    color: var(--gefaehrdet-text); }
+.stark-gefaehrdet .rl-badge { background: var(--stark-gefaehrdet); color: var(--stark-gefaehrdet-text); }
+.aussterben     .rl-badge { background: var(--aussterben);   color: var(--aussterben-text); }
+.ausgestorben   .rl-badge { background: var(--ausgestorben); color: var(--ausgestorben-text); }
+
+.rl-karte p  { font-size: 0.95rem; color: var(--text-hell); margin-top: 0.15rem; }
+.rl-karte strong { color: var(--text); display: block; font-size: 1rem; margin-bottom: 0.2rem; }
+
+/* ===== Tier-Kacheln (Hauptseite) ===== */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.tier-kachel {
+  background: var(--weiss);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten-klein);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.tier-kachel:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--schatten-gross);
+}
+.tier-kachel img {
+  width: 100%;
+  height: 185px;
+  object-fit: contain;
+  background: #f0f0f0;
+  transition: transform 0.3s ease;
+}
+.tier-kachel:hover img { transform: scale(1.04); }
+.tier-kachel-info {
+  padding: 1rem 1.1rem 1.1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.tier-kachel-info h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+}
+.tier-kachel-info .wissenschaftlich {
+  font-size: 0.8rem;
+  color: var(--text-hell);
+  font-style: italic;
+}
+
+/* ===== Kategorie-Titel ===== */
+.kategorie-titel {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--gruen-mittel);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 2.2rem 0 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gruen-hell);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== Status-Badges ===== */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.28rem 0.75rem;
+  border-radius: 20px;
+  align-self: flex-start;
+  letter-spacing: 0.02em;
+}
+.status-badge.vorwarnliste   { background: var(--vorwarnliste);  color: var(--vorwarnliste-text); }
+.status-badge.gefaehrdet     { background: var(--gefaehrdet);    color: var(--gefaehrdet-text); }
+.status-badge.stark-gefaehrdet { background: var(--stark-gefaehrdet); color: var(--stark-gefaehrdet-text); }
+.status-badge.aussterben     { background: var(--aussterben);   color: var(--aussterben-text); }
+
+/* ===== Tier-Seite: Header ===== */
+.tier-header {
+  color: var(--weiss);
+  padding: 2.2rem 1.5rem 2rem;
+  text-align: center;
+  /* Default: grün */
+  background: linear-gradient(150deg, #1a5c1a, #2e7d32);
+}
+/* Status-basierte Farben */
+.tier-header.gefaehrdet     { background: linear-gradient(150deg, #8d3000, #e65100); }
+.tier-header.stark-gefaehrdet { background: linear-gradient(150deg, #7f1f00, #bf360c); }
+.tier-header.aussterben     { background: linear-gradient(150deg, #4a0000, #7f0000); }
+
+.tier-header .wissenschaftlich {
+  font-style: italic;
+  opacity: 0.82;
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+.tier-header h1 {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.tier-header .status-badge {
+  font-size: 0.9rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(255,255,255,0.22);
+  color: var(--weiss);
+  border: 2px solid rgba(255,255,255,0.5);
+}
+
+/* ===== Tier-Foto ===== */
+.tier-foto {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.foto-credit {
+  font-size: 0.72rem;
+  color: #888;
+  text-align: right;
+  padding: 0.3rem 0.8rem;
+  background: #f5f5f5;
+}
+
+/* ===== Steckbrief ===== */
+.steckbrief {
+  background: var(--weiss);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten-klein);
+  overflow: hidden;
+}
+.steckbrief table { width: 100%; border-collapse: collapse; }
+.steckbrief td {
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.97rem;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.steckbrief td:first-child {
+  font-weight: 700;
+  color: var(--gruen-dunkel);
+  width: 36%;
+  white-space: nowrap;
+}
+.steckbrief tr:last-child td { border-bottom: none; }
+.steckbrief tr:hover td { background: var(--gruen-sehr-hell); transition: background 0.15s; }
+
+/* ===== Fließtext-Karte ===== */
+.fliesstext-karte {
+  background: var(--weiss);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--schatten-klein);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-mittel);
+}
+.fliesstext-karte p + p { margin-top: 0.85rem; }
+
+/* ===== Präsentations-Leitfaden ===== */
+.praesentation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.praes-karte {
+  background: var(--weiss);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten-klein);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+.praes-karte:hover { box-shadow: var(--schatten); }
+.praes-karte summary {
+  padding: 1.1rem 1.2rem;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  list-style: none;
+  user-select: none;
+  transition: filter 0.15s;
+}
+.praes-karte summary::-webkit-details-marker { display: none; }
+.praes-karte[open] summary { border-bottom: 1px solid rgba(0,0,0,0.07); }
+.praes-karte summary::after {
+  content: "▼";
+  margin-left: auto;
+  font-size: 0.7rem;
+  transition: transform 0.22s ease;
+  opacity: 0.7;
+}
+.praes-karte[open] summary::after { transform: rotate(180deg); }
+
+.praes-karte:nth-child(1) summary { background: #e3f2fd; color: #0d47a1; }
+.praes-karte:nth-child(2) summary { background: #e8f5e9; color: #1b5e20; }
+.praes-karte:nth-child(3) summary { background: #fff8e1; color: #e65100; }
+.praes-karte:nth-child(4) summary { background: #fce4ec; color: #880e4f; }
+
+.praes-karte .inhalt {
+  padding: 1.1rem 1.2rem;
+  font-size: 0.97rem;
+  color: var(--text-hell);
+  line-height: 1.8;
+}
+
+/* ===== Optionale Aufgaben ===== */
+.aufgaben-liste { display: flex; flex-direction: column; gap: 0.85rem; }
+.aufgabe {
+  background: var(--weiss);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--schatten-klein);
+  border-left: 5px solid var(--gruen-mittel);
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+.aufgabe:hover { transform: translateX(3px); box-shadow: var(--schatten); }
+.aufgabe .aufgabe-typ {
+  background: var(--gruen-sehr-hell);
+  color: var(--gruen-dunkel);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: 10px;
+  white-space: nowrap;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.aufgabe p { font-size: 0.97rem; line-height: 1.7; }
+
+/* ===== Weiterführende Links ===== */
+.mehr-erfahren { display: flex; flex-direction: column; gap: 0.7rem; }
+.mehr-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--weiss);
+  padding: 0.95rem 1.1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--schatten-klein);
+  font-size: 0.97rem;
+  transition: var(--transition);
+  border-left: 4px solid transparent;
+}
+.mehr-link:hover {
+  background: var(--gruen-sehr-hell);
+  border-left-color: var(--gruen-mittel);
+  transform: translateX(3px);
+  text-decoration: none;
+  box-shadow: var(--schatten);
+}
+.mehr-link .link-quelle {
+  font-weight: 800;
+  color: var(--gruen-dunkel);
+  min-width: 110px;
+  font-size: 0.9rem;
+}
+.mehr-link .link-desc { color: var(--text-hell); font-size: 0.88rem; }
+.mehr-link::before {
+  content: "→";
+  color: var(--gruen-mittel);
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ===== Säulendiagramm ===== */
+.diagramm-wrap {
+  background: #f4f7f4;
+  border-radius: var(--radius-klein);
+  padding: 1rem 1rem 0.75rem;
+  margin-top: 1rem;
+  border: 1px solid #dde8dd;
+}
+.diagramm-titel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-hell);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.85rem;
+  text-align: center;
+}
+.diagramm {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-end;
+  height: 110px;
+}
+.b-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+.b-bar {
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  min-height: 3px;
+}
+.diagramm-stark .b-bar { background: var(--stark-gefaehrdet); }
+.diagramm-gef   .b-bar { background: var(--gefaehrdet); }
+.diagramm-aus   .b-bar { background: var(--aussterben); }
+.diagramm-pos   .b-bar { background: var(--gruen-mittel); }
+
+.b-val {
+  font-size: 0.67rem;
+  color: var(--text-hell);
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+.b-year {
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: var(--text-mittel);
+  margin-top: 0.28rem;
+  text-align: center;
+}
+.diagramm-quelle {
+  font-size: 0.64rem;
+  color: #bbb;
+  margin-top: 0.45rem;
+  font-style: italic;
+  text-align: right;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: var(--gruen-dunkel);
+  color: rgba(255,255,255,0.72);
+  text-align: center;
+  padding: 1.75rem;
+  font-size: 0.88rem;
+  margin-top: 3.5rem;
+}
+footer a { color: rgba(255,255,255,0.9); }
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.65rem; }
+  .tier-grid { grid-template-columns: 1fr 1fr; }
+  .praesentation-grid { grid-template-columns: 1fr; }
+  .steckbrief td:first-child { width: 42%; }
+  .fliesstext-karte { padding: 1.1rem 1.2rem; }
+}
+@media (max-width: 420px) {
+  .tier-grid { grid-template-columns: 1fr; }
+  body { font-size: 17px; }
+}
